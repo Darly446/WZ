@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#17151f"><meta name="description" content="World Erzes — comunidade, clãs e mercado de Minecraft.">
+  <link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+  <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>WORLD ERZES</title>
+</head>
+<body>
+  <div id="loading" class="loading" aria-live="polite">
+    <img id="loadingImage" src="assets/loading-1.png" alt="Carregando World Erzes">
+    <div class="loading-title">WORLD ERZES</div><div class="loading-track"><div id="loadingBar"></div></div><p id="loadingText">Invocando o mundo...</p>
+  </div>
+  <main id="app" class="app hidden">
+    <header class="topbar"><span class="brand-mark">WE</span><span>WORLD ERZES</span><button id="musicToggle" class="small-button music-button" aria-label="Ativar música de fundo">♫ Música: desligada</button><button id="backHome" class="small-button hidden">Voltar</button></header>
+    <audio id="backgroundMusic" preload="auto" src="assets/dragonborn-comes.mp3"></audio>
+    <section id="homeView" class="view home-view">
+      <div class="hero"><p class="eyebrow">UM NOVO MUNDO, UMA NOVA HISTÓRIA</p><h1>WORLD<br><span>ERZES</span></h1><p>Construa sua história. Reúna seus aliados. Conquiste seu lugar.</p></div>
+      <nav class="main-menu" aria-label="Menu principal"><button class="mc-button" data-view="clansView">Clã</button><button class="mc-button" data-view="marketView">Mercado clandestino</button><button class="mc-button" data-view="wizardView">Loja do mago</button><button class="mc-button profile-home-button" id="homeProfileButton">Criar</button></nav>
+      <p class="prototype-note">Crônicas de World Erzes · algumas funções precisam de servidor para funcionar entre jogadores</p>
+    </section>
+    <section id="profileCreateView" class="view hidden">
+      <div class="section-heading"><p class="eyebrow">IDENTIDADE DO REINO</p><h2>Criar perfil</h2><p>Monte sua identidade pública na World Erzes.</p></div>
+      <form id="profileForm" class="panel">
+        <label for="profileName">Nome de jogador <em>Obrigatório</em></label><input id="profileName" required maxlength="24" placeholder="Como você quer ser conhecido?">
+        <label for="profileGamertag">Gamertag do Minecraft <em>Obrigatório</em></label><input id="profileGamertag" required maxlength="32" placeholder="Seu nome no Minecraft">
+        <label for="profileDiscord">Usuário do Discord</label><input id="profileDiscord" maxlength="40" placeholder="Ex.: taurus#0000 ou @taurus">
+        <label for="profileStyle">Estilo de jogo</label><select id="profileStyle"><option>Construção</option><option>PvP</option><option>Exploração</option><option>Sobrevivência</option><option>Redstone</option><option>Comércio</option><option>Variado</option></select>
+        <label for="profileDescription">Descrição</label><textarea id="profileDescription" maxlength="300" rows="3" placeholder="Conte um pouco sobre seu personagem..."></textarea><small class="field-help">Até 300 caracteres. Seu perfil será público.</small>
+        <label for="profileAvatar">Avatar medieval</label><select id="profileAvatar"><option value="🧙">Mago</option><option value="👑">Rei</option><option value="🛡️">Soldado</option><option value="👸">Rainha</option><option value="🧙‍♀️">Bruxa</option><option value="🏹">Arqueiro</option><option value="⚔️">Cavaleiro</option><option value="🥷">Ladino</option><option value="🔮">Sacerdote</option><option value="🗡️">Guerreira</option></select>
+        <button class="mc-button submit-button" type="submit">Salvar perfil</button>
+      </form>
+      <div id="profileResult" class="notice hidden" role="status"></div>
+    </section>
+    <section id="profileView" class="view hidden">
+      <div class="section-heading"><p class="eyebrow">IDENTIDADE DO REINO</p><h2>Perfil do jogador</h2><p>Informações públicas deste aventureiro.</p></div>
+      <div class="profile-card panel"><div id="profileAvatarDisplay" class="profile-avatar">🧙</div><h2 id="profileDisplayName">Jogador</h2><p id="profileDisplayGamertag"></p><div class="profile-facts"><div><small>Discord</small><strong id="profileDisplayDiscord">Não informado</strong></div><div><small>Estilo de jogo</small><strong id="profileDisplayStyle">Variado</strong></div><div><small>Clã</small><strong id="profileDisplayClan">Sem clã</strong></div><div><small>Vitórias oficiais</small><strong id="profileDisplayWins">0</strong></div></div><p id="profileDisplayDescription" class="profile-description"></p><button id="editProfileButton" class="mc-button" type="button">Editar meu perfil</button><p class="hint">Protótipo: este perfil fica salvo somente neste navegador. Para torná-lo público a todos os jogadores, falta conectar o banco de dados e as contas.</p></div>
+    </section>
+    <section id="clansView" class="view hidden">
+      <div class="section-heading"><p class="eyebrow">SISTEMA DE CLÃS</p><h2>Escolha seu caminho</h2><p>Forje alianças e conquiste a World Erzes.</p></div>
+      <div class="option-list">
+        <button class="option-card" id="createOption"><span class="option-icon">✦</span><span><strong>Criar</strong><small>Crie seu clã e domine a World Erzes</small></span><span class="chevron">›</span></button>
+        <button class="option-card" id="joinOption"><span class="option-icon">⚔</span><span><strong>Entrar</strong><small>Procure por clãs e participe de uma equipe</small></span><span class="chevron">›</span></button>
+        <button class="option-card" id="loginOption"><span class="option-icon">♜</span><span><strong>Login</strong><small>Acesse seu clã</small></span><span class="chevron">›</span></button>
+      </div>
+      <p class="hint">Os acessos são demonstrativos neste protótipo. A validação real será feita pelo servidor após a integração da conta Discord.</p>
+    </section>
+    <section id="createView" class="view hidden">
+      <div class="section-heading"><p class="eyebrow">FUNDAÇÃO</p><h2>Registrar um clã</h2><p>Preencha os dados para enviar sua proposta ao Taurus.</p></div>
+      <form id="clanForm" class="panel">
+        <label for="clanName">Nome do clã <em>Obrigatório</em></label><input id="clanName" name="clanName" required maxlength="32" minlength="3" placeholder="Ex.: Ordem dos Templários">
+        <label for="clanTag">Tag curta</label><input id="clanTag" name="clanTag" maxlength="6" placeholder="Ex.: T4R" autocomplete="off"><small class="field-help">Uma abreviação de até 6 caracteres.</small>
+        <label for="clanDescription">Descrição e objetivo</label><textarea id="clanDescription" name="clanDescription" maxlength="500" rows="4" placeholder="Conte a história, os planos e os objetivos do clã..."></textarea><small class="field-help">Até 500 caracteres.</small>
+        <button class="mc-button submit-button" type="submit">Enviar para aprovação</button>
+      </form>
+      <div id="submitResult" class="notice hidden" role="status"></div>
+    </section>
+    <section id="joinView" class="view hidden"><div class="section-heading"><p class="eyebrow">RECRUTAMENTO</p><h2>Encontrar um clã</h2><p>A busca por clãs será habilitada quando a base de dados estiver conectada.</p></div><div class="empty-state">⚔<strong>Os clãs aparecerão aqui</strong><span>Você poderá ver a descrição, vagas disponíveis e enviar uma solicitação ao líder.</span></div></section>
+    <section id="loginView" class="view hidden"><div class="section-heading"><p class="eyebrow">PORTAL DO CLÃ</p><h2>Acesse seu clã</h2><p>O login por Discord será conectado na próxima etapa.</p></div><div class="panel"><button id="discordLogin" class="mc-button submit-button" type="button">Continuar com Discord</button><p class="hint">Este botão ainda é ilustrativo e não solicita nem armazena sua senha. A autenticação será feita pelo fluxo oficial do Discord OAuth2.</p></div></section>
+    <section id="marketView" class="view hidden"><div class="section-heading"><p class="eyebrow">TROCAS ENTRE CLÃS</p><h2>Mercado clandestino</h2><p>Uma futura área para cadastrar itens, preços e estoques.</p></div><div class="empty-state">◆<strong>Mercado em preparação</strong><span>Os itens e estoques precisarão ser salvos no banco de dados para refletir as mudanças em tempo real.</span></div></section>
+    <section id="wizardView" class="view hidden"><div class="section-heading"><p class="eyebrow">ARTEFATOS E RECURSOS</p><h2>Loja do mago</h2><p>Esta área será definida nas próximas etapas.</p></div><div class="empty-state">✧<strong>Em breve</strong><span>O inventário da loja será configurado depois.</span></div></section>
+    <footer>WORLD ERZES <span>•</span> O mundo está em suas mãos.</footer>
+  </main>
+  <script src="app.js"></script>
+</body></html>
